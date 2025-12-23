@@ -1,5 +1,13 @@
 # Lofi LoRA Training: The Definitive AI Lofi Beats Model
 
+> **This is the implementation repository** for lofi LoRA training.
+>
+> - **Training scripts & tools**: This repo ([lofi-lora](https://github.com/willibrandon/lofi-lora))
+> - **Neovim plugin**: [lofi.nvim](https://github.com/willibrandon/lofi.nvim)
+> - **Trained models**: [willibrandon/lofi-models](https://huggingface.co/willibrandon/lofi-models)
+
+---
+
 ## Executive Summary
 
 This feature implements a comprehensive pipeline for curating, training, and deploying a custom ACE-Step LoRA fine-tuned specifically for lofi music generation. The goal is to produce the highest-quality locally-deployable AI lofi beats model ever created, covering all sub-genres, seasonal themes, and stylistic variations of lofi music.
