@@ -39,7 +39,7 @@ Every training run MUST be reproducible from recorded configuration. This requir
 - Training command and hyperparameters recorded in experiment logs
 - Dataset version hash stored with each checkpoint
 
-Checkpoints MUST be saved every 5,000 steps. Each checkpoint MUST include the configuration state that produced it.
+Checkpoints MUST be saved every 2,000 steps (ACE-Step default via `--every_n_train_steps`). Each checkpoint MUST include the configuration state that produced it.
 
 ### III. Quality Metrics
 
@@ -80,7 +80,7 @@ Prompts MUST use the standardized tag categories: genre, mood, instruments, temp
 |-----------|-------------|
 | Sample Rate | 48kHz (ACE-Step native) |
 | Format | 320kbps MP3 or lossless source |
-| Duration | 30s minimum, 180s maximum, 60-120s optimal |
+| Duration | 30s minimum, 240s maximum, 60-120s optimal |
 | Channels | Stereo (mono sources MUST be converted) |
 | Peak Level | Normalized to -1dB |
 | Clipping | < 0.1% of samples above threshold |
@@ -91,11 +91,14 @@ Prompts MUST use the standardized tag categories: genre, mood, instruments, temp
 | Parameter | Value | Rationale |
 |-----------|-------|-----------|
 | LoRA rank (r) | 256 | High rank for stylistic nuance |
+| lora_alpha | 32 | ACE-Step default scaling factor |
+| use_rslora | true | Rank-stabilized LoRA for better convergence |
 | Learning rate | 1e-4 | Proven stable for LoRA |
 | Max steps | 100,000 | 500 tracks × 200 repeats |
-| Checkpoint interval | 5,000 steps | Recovery and comparison |
-| Precision | bf16-mixed | RTX 4090 optimized |
+| Checkpoint interval | 2,000 steps | ACE-Step default (--every_n_train_steps) |
+| Precision | --precision bf16 | Explicit flag required; ACE-Step defaults to fp32 |
 | Gradient clip | 0.5 | Prevent explosion |
+| SSL models | MERT + mHuBERT | Semantic alignment (REPA) - auto-downloaded |
 
 ### Export Requirements
 
